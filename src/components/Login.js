@@ -17,14 +17,32 @@ function Login() {
         try {
             let response;
             if (method === 'GET') {
-                response = await iAxios.get(url);
+                response = await iAxios.get('/api/getPage', { params: { pageName: url } });
             } else if (method === 'POST') {
-                response = await iAxios.post(url);
+                response = await iAxios.post('/api/getPage', { pageName: url });
             }
-            setRespuesta(response.data);
+
+            const cleanResponse = response.data.replace(/\\r|\\n|\\t/g, '').replace(/"/g, '');
+            setRespuesta(cleanResponse);
             setError('');
         } catch (error) {
             if (error.response) {
+                if (error.response.status === 404) {
+                    setError('Página no encontrada. Verifica la URL e inténtalo de nuevo.');
+                } else if (error.response.status === 400) {
+                    setError('Solicitud incorrecta. Verifica los datos e inténtalo de nuevo.');
+                } else if (error.response.status === 500) {
+                    setError(`Error del servidor: ${error.response.data.message || 'Internal Server Error'}`);
+                } else {
+                    setError('Ocurrió un error inesperado:${error.response.status}');
+                }
+                setRespuesta('');
+            } else {
+                setError('Error en la solicitud. Por favor, inténtalo de nuevo.');
+                setRespuesta('');
+            }
+
+            /*if (error.response) {
                 // Si hay un error de respuesta del servidor
                 setRespuesta(error.response.data); // Mostrar el mensaje de error del servidor en el iframe
                 setError('');
@@ -33,6 +51,7 @@ function Login() {
                 setRespuesta({ error: 'Error en la solicitud. Por favor, inténtalo de nuevo.' }); // Mostrar un mensaje genérico de error
                 setError('Error en la solicitud. Por favor, inténtalo de nuevo.');
             }
+            */
         }
     };
     return (
@@ -61,23 +80,28 @@ function Login() {
                                 </Dropdown.Menu>
                             </Dropdown>
                             <Button variant="primary" type="submit">
-                                Realiza petición
+                                Consultar
                             </Button>
                         </div>
                     </Form>
                     {error && <Alert variant="danger">{error}</Alert>}
                     {respuesta && (
-                        <div className="iframe-container" style={{width: '100%'}}>
+                        <div className="iframe-container" style={{ width: '100%' }}>
                             <iframe
                                 key={iframeKey}
-                                srcDoc={`<pre>${JSON.stringify(respuesta, null, 2)}</pre>`}
+                                //srcDoc={`<pre>${JSON.stringify(respuesta, null, 2)}</pre>`}
+                                srcDoc={respuesta}
                                 title="Respuesta del servidor"
-                                width="800px"
-                                height="400"
-                                style={{border: '1px solid #ccc', borderRadius: '4px', backgroundColor: 'white'}}
+                                width="100%"
+                                height="200px"
+                                style={{ border: '1px solid #ccc', borderRadius: '4px', backgroundColor: 'white' }}
                             />
-                        </div>
+                        </div>                        
                     )}
+                    <div>
+                        <p>Andrés Camilo Novoa</p>
+                    </div>
+
                 </Col>
             </Row>
         </Container>

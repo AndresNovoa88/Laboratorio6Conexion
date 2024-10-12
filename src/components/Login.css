@@ -1,8 +1,8 @@
 /* Estilos generales */
 body {
-    background: linear-gradient(135deg, #ff7e5f, #feb47b);
-    font-family: 'Roboto', sans-serif;
-    color: #fff;
+    background: linear-gradient(135deg, #2c2c2c, #1a1a1a);
+    font-family: 'Arial', sans-serif;
+    color: #e0e0e0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,12 +12,12 @@ body {
 
 /* Container principal */
 .container {
-    background: rgba(0, 0, 0, 0.8);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    background: rgba(255, 255, 255, 0.08);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
     width: 100%;
-    max-width: 500px;
+    max-width: 550px;
 }
 
 /* Filas y columnas */
@@ -36,7 +36,7 @@ form {
 
 /* Grupo de formulario */
 .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 /* Etiquetas */
@@ -44,55 +44,55 @@ form {
     font-weight: bold;
     margin-bottom: 5px;
     display: block;
-    color: #feb47b;
+    color: #cccccc;
 }
 
 /* Campos de entrada */
 .form-control {
-    background: transparent;
-    border: 2px solid #feb47b;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #555555;
     border-radius: 5px;
-    color: #fff;
-    padding: 10px;
+    color: #e0e0e0;
+    padding: 12px;
     transition: border-color 0.3s;
 }
 
 .form-control:focus {
-    border-color: #ff7e5f;
+    border-color: #888888;
     box-shadow: none;
 }
 
 /* Feedback de validación */
 .form-control.is-invalid {
-    border-color: #dc3545;
+    border-color: #e74c3c;
 }
 
 .form-control.is-invalid:focus {
-    border-color: #dc3545;
+    border-color: #e74c3c;
 }
 
 .invalid-feedback {
-    color: #dc3545;
+    color: #e74c3c;
 }
 
 /* Estilos de botones */
-.btn-warning {
-    background: #feb47b;
+.btn-primary {
+    background: #555555;
     border: none;
     color: #ffffff;
-    padding: 10px 20px;
+    padding: 12px 25px;
     border-radius: 5px;
     transition: background-color 0.3s, transform 0.3s;
 }
 
-.btn-warning:hover {
-    background: #ff7e5f;
+.btn-primary:hover {
+    background: #333333;
     transform: scale(1.05);
 }
 
 /* Alerta de error */
 .alert-danger {
-    background: #dc3545;
+    background: #e74c3c;
     border: none;
     color: #fff;
     border-radius: 5px;
@@ -101,18 +101,19 @@ form {
 /* Respuesta */
 .respuesta {
     background: rgba(255, 255, 255, 0.1);
-    padding: 10px;
+    padding: 15px;
     border-radius: 5px;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 /* Título de respuesta */
 .respuesta h2 {
     margin-top: 0;
-    color: #feb47b;
+    color: #cccccc;
 }
 
 /* Párrafo de respuesta */
 .respuesta p {
     margin: 0;
 }
+
